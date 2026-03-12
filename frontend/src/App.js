@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { LineChart, Line, AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { useCallback, useEffect, useState } from 'react';
+import { Area, AreaChart, Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -95,7 +95,7 @@ const Nav = ({ active, setActive, portfolioId }) => (
   <nav style={{ background: 'rgba(6,10,16,0.95)', borderBottom: '1px solid var(--border)', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 100, backdropFilter: 'blur(20px)' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, var(--accent), #0070a8)', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>📈</div>
-      <span style={{ fontWeight: 700, fontSize: 17, letterSpacing: '-0.3px' }}>StockApp</span>
+      <span style={{ fontWeight: 700, fontSize: 17, letterSpacing: '-0.3px' }}>StockWebsite</span>
       <span style={{ fontSize: 10, background: 'rgba(0,212,255,0.15)', color: 'var(--accent)', padding: '2px 6px', borderRadius: 4, marginLeft: 4, fontWeight: 600 }}>MERN</span>
     </div>
     <div style={{ display: 'flex', gap: 4 }}>
