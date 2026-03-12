@@ -1,0 +1,30 @@
+services:
+  # ─── BACKEND (Node/Express API) ───────────────────────────────────────
+  - type: web
+    name: stockapp-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false          # You paste this in Render dashboard manually
+      - key: PORT
+        value: 5000
+
+  # ─── FRONTEND (React) ─────────────────────────────────────────────────
+  - type: web
+    name: stockapp-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_API_URL
+        sync: false          # You paste your backend Render URL here
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
