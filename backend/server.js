@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-// Load .env file in development — in production Render injects vars directly
+// Load .env in development
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
@@ -13,33 +13,15 @@ const transactionRoutes = require('./routes/transactionRoutes');
 
 const app = express();
 
-// Debug: confirm env vars are loaded (remove after confirming it works)
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
-console.log('PORT:', process.env.PORT);
-
 // CORS
-const allowedOrigins = [
-  'http://localhost:3000',
-  process.env.FRONTEND_URL,
-].filter(Boolean);
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error('CORS blocked: ' + origin));
-  },
-  credentials: true
-}));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-// MongoDB Connection
-const MONGO_URI = process.env.MONGODB_URI;
+// MongoDB — fallback URI hardcoded for Render deployment
+const MONGO_URI = process.env.MONGODB_URI || 
+  'mongodb+srv://chetanrathod1257_db_user:WcCGr6ekUPofVgEZ@stockapp.e9s7zbs.mongodb.net/stockapp?retryWrites=true&w=majority';
 
-if (!MONGO_URI) {
-  console.error('❌ MONGODB_URI is not set! Check your environment variables on Render.');
-  process.exit(1); // crash loudly so Render shows the error clearly
-}
+console.log('Connecting to MongoDB...');
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ MongoDB Connected Successfully'))
@@ -59,7 +41,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 404 handler
+// 404
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
@@ -73,7 +55,6 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log('🚀 Server running on port ' + PORT);
-  console.log('📊 StockApp API ready');
 });
 
 module.exports = app;
