@@ -91,7 +91,7 @@ const Toast = ({ message, type, onClose }) => {
 };
 
 // ============ NAV ============
-const Nav = ({ active, setActive, portfolioId }) => (
+const Nav = ({ active, setActive, portfolioId, user, onLogout }) => (
   <nav style={{ background: 'rgba(6,10,16,0.95)', borderBottom: '1px solid var(--border)', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 100, backdropFilter: 'blur(20px)' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, var(--accent), #0070a8)', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>📈</div>
@@ -105,9 +105,25 @@ const Nav = ({ active, setActive, portfolioId }) => (
         </button>
       ))}
     </div>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <div style={{ width: 8, height: 8, background: 'var(--green)', borderRadius: '50%', boxShadow: '0 0 8px var(--green)' }} />
       <span style={{ fontSize: 12, color: 'var(--muted)' }}>Live</span>
+      {user && (
+        <>
+          <div style={{ width: 1, height: 20, background: 'var(--border)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 30, height: 30, borderRadius: '50%', background: 'linear-gradient(135deg, var(--accent), #0070a8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: 'white' }}>
+              {user.fullName?.charAt(0).toUpperCase()}
+            </div>
+            <span style={{ fontSize: 13, color: 'var(--text)', fontWeight: 500 }}>
+              {user.fullName?.split(' ')[0]}
+            </span>
+          </div>
+          <button onClick={onLogout} className="btn" style={{ background: 'rgba(255,71,87,0.1)', color: 'var(--red)', fontSize: 12, padding: '5px 12px' }}>
+            Logout
+          </button>
+        </>
+      )}
     </div>
   </nav>
 );
@@ -686,7 +702,7 @@ const Manage = ({ onToast }) => {
 };
 
 // ============ MAIN APP ============
-export default function App() {
+export default function App({ user, token, onLogout }) {
   const [active, setActive] = useState('Dashboard');
   const [toast, setToast] = useState(null);
   const [portfolioId, setPortfolioId] = useState(null);
@@ -713,7 +729,7 @@ export default function App() {
     <>
       <style>{styles}</style>
       <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-        <Nav active={active} setActive={setActive} portfolioId={portfolioId} />
+        <Nav active={active} setActive={setActive} portfolioId={portfolioId} user={user} onLogout={onLogout} />
 
         {/* Ticker bar */}
         <div style={{ background: 'var(--bg2)', borderBottom: '1px solid var(--border)', padding: '8px 32px', overflow: 'hidden' }}>

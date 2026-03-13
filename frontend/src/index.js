@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+// StockWebsite v2 - Auth enabled
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import HomePage from './pages/HomePage';
 import { LoginPage, RegisterPage } from './pages/AuthPages';
+import HomePage from './pages/HomePage';
 
 function Root() {
-  // page: 'home' | 'login' | 'register' | 'app'
   const [page, setPage] = useState('home');
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  // Check if already logged in on load
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
     const savedUser = localStorage.getItem('user');
