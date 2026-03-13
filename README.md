@@ -119,3 +119,8 @@ App runs at **http://localhost:3000**, API at **http://localhost:5000**
 3. **Portfolio** — Holdings, P&L per stock, total returns
 4. **Transactions** — Trade history with delete
 5. **Manage** — Admin CRUD for stocks (demonstrates all HTTP methods)
+
+## future updates :
+1. **initation of authentication in stock-website
+2. **Add more stock in side the dashboard
+3. **Make stock logo visible  
