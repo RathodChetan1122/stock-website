@@ -86,7 +86,7 @@ export default function HomePage({ onLogin, onRegister }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #00b386, #0066ff)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>📈</div>
-          <span style={{ fontWeight: 800, fontSize: 20, color: var(--dark) }}>Stock<span style={{ color: 'var(--accent)' }}>Website</span></span>
+          <span style={{ fontWeight: 800, fontSize: 20, color: '#0d1117' }}>Stock<span style={{ color: 'var(--accent)' }}>Website</span></span>
         </div>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <button onClick={onLogin} className="btn btn-outline" style={{ padding: '9px 24px', fontSize: 14 }}>Login</button>
@@ -124,7 +124,7 @@ export default function HomePage({ onLogin, onRegister }) {
             🚀 MERN Stack Workshop Project
           </div>
 
-          <h1 className="animate-2" style={{ fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: 800, lineHeight: 1.1, marginBottom: 24, color: var(--dark) }}>
+          <h1 className="animate-2" style={{ fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: 800, lineHeight: 1.1, marginBottom: 24, color: '#0d1117' }}>
             Invest Smarter,<br />
             <span style={{ color: 'var(--accent)' }}>Grow Faster</span>
           </h1>
@@ -137,7 +137,7 @@ export default function HomePage({ onLogin, onRegister }) {
             <button onClick={onRegister} className="btn btn-green" style={{ fontSize: 16, padding: '14px 36px' }}>
               Start Investing Free →
             </button>
-            <button onClick={onLogin} className="btn" style={{ background: 'white', color: var(--dark), border: '2px solid var(--border)', fontSize: 16, padding: '14px 36px' }}>
+            <button onClick={onLogin} className="btn" style={{ background: 'white', color: '#0d1117', border: '2px solid var(--border)', fontSize: 16, padding: '14px 36px' }}>
               Login to Account
             </button>
           </div>
